@@ -11,6 +11,7 @@ module.exports.createSitter = (req, res, next) => {
   sitter.address = req.body.address;
   sitter.years = req.body.years;
   sitter.information = req.body.information;
+  sitter.photo = req.body.photo;
 
   sitter.save((err, doc)=>{
     if(!err) {
