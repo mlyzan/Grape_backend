@@ -31,7 +31,7 @@ const sitterSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    required: 'Info can\'t be empty'
+    required: 'Photo can\'t be empty'
   }
 });
 

@@ -22,3 +22,13 @@ module.exports.createSitter = (req, res, next) => {
     }
   });
 }
+
+module.exports.getSitters = (req, res) => {
+  Sitter.find((err, docs) => {
+    if(!err) {
+      res.send(docs);
+    } else {
+      console.log('Error in getting employees: ' + JSON.stringify(err, undefined, 2));
+    }
+  })
+}
