@@ -12,6 +12,10 @@ module.exports.createSitter = (req, res, next) => {
   sitter.years = req.body.years;
   sitter.information = req.body.information;
   sitter.photo = req.body.photo;
+  sitter.userId = req.body.userId;
+  sitter.userName = req.body.userName;
+  sitter.userEmail = req.body.userEmail;
+  
 
   sitter.save((err, doc)=>{
     if(!err) {
@@ -27,6 +31,16 @@ module.exports.getSitters = (req, res) => {
   Sitter.find((err, docs) => {
     if(!err) {
       res.send(docs);
+    } else {
+      console.log('Error in getting employees: ' + JSON.stringify(err, undefined, 2));
+    }
+  })
+}
+
+module.exports.getSitterById = (id, res) => {
+  Sitter.findOne({"_id": new ObjectId(id)},(err, doc) => {
+    if(!err) {
+      res.send(doc);
     } else {
       console.log('Error in getting employees: ' + JSON.stringify(err, undefined, 2));
     }

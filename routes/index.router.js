@@ -8,5 +8,6 @@ router.post('/register', ctrlUser.register);
 router.post('/authenticate', ctrlUser.authenticate);
 router.post('/sitter', ctrlSitter.createSitter);
 router.get('/sitter', ctrlSitter.getSitters);
+router.get('/sitter/:id', ctrlSitter.getSitterById);
 
 module.exports = router; 

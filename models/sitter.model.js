@@ -32,6 +32,15 @@ const sitterSchema = new mongoose.Schema({
   photo: {
     type: String,
     required: 'Photo can\'t be empty'
+  },
+  userId: {
+    type: String
+  },
+  userName: {
+    type: String
+  },
+  userEmail: {
+    type: String
   }
 });
 
