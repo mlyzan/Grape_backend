@@ -26,6 +26,7 @@ app.use((err, req, res, next) => {
       res.status(422).send(valErrors)
   }
 });
+app.get('/', (req, res) => res.send('Server works!'));
  
 //start server
 app.listen(PORT, () => {
