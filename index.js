@@ -6,6 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
+const server = require('http').createServer();
 let PORT = process.env.PORT || 3000;
 
 const rtsIndex = require('./routes/index.router');
@@ -29,6 +30,6 @@ app.use((err, req, res, next) => {
 app.get('/', (req, res) => res.send('Server works!'));
  
 //start server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server started at port : ${PORT}`);
 });
