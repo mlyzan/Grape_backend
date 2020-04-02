@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 const Sitter = mongoose.model('Sitter');
 
@@ -45,4 +46,12 @@ module.exports.getSitterById = (id, res) => {
       console.log('Error in getting employees: ' + JSON.stringify(err, undefined, 2));
     }
   })
+}
+
+module.exports.deleteSitterById = (req, res) => {
+  Sitter.deleteOne({"userId": req.params.id}, (err) => {
+    if (!err) { res.send({"success": 'Successfuly deleted'}); }
+    else { console.log('Error in Employee Delete :' + JSON.stringify(err, undefined, 2)); }
+  })  
+ 
 }
