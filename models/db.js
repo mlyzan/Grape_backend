@@ -1,6 +1,6 @@
 const mongoose = require('mongoose'); 
 
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true}, (err)=>{
+mongoose.connect("mongodb://localhost:27017/GRAPE_DB", {useNewUrlParser: true, useUnifiedTopology: true}, (err)=>{
   if(!err) {
     console.log('MongoDB connection succeeded.');
   } else {
