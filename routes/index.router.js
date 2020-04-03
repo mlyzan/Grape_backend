@@ -10,5 +10,6 @@ router.post('/sitter', ctrlSitter.createSitter);
 router.get('/sitter', ctrlSitter.getSitters);
 router.get('/sitter/:id', ctrlSitter.getSitterById);
 router.delete('/sitter/:id', ctrlSitter.deleteSitterById);
+router.put('/sitter/:id', ctrlSitter.updateSitterById);
 
 module.exports = router; 

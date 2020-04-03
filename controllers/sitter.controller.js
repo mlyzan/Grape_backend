@@ -55,3 +55,20 @@ module.exports.deleteSitterById = (req, res) => {
   })  
  
 }
+
+module.exports.updateSitterById = (req, res) => {
+  let newData = {
+    services:  req.body.services,
+    animals: req.body.animals,
+    availability: req.body.availability,
+    payment: req.body.payment,
+    address: req.body.address,
+    years: req.body.years,
+    information: req.body.information
+  };
+
+  Sitter.updateOne({"userId": req.params.id}, {$set: newData}, err => {
+    if (!err) { res.send({"success": 'Successfully updated'}); }
+    else { console.log('Error in Sitter Update :' + JSON.stringify(err, undefined, 2)); }
+  })
+}
