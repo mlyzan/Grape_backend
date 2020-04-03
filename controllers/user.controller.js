@@ -17,7 +17,7 @@ module.exports.register = (req, res, next) => {
 
   user.save((err,doc)=>{
     if(!err) {
-      res.send({userId: doc._id, userName: doc.fullName, userEmail: doc.email});
+      res.status(200).send();
     } else {
       console.log(err);
       if(err.code === 11000) {
@@ -37,7 +37,7 @@ module.exports.authenticate = (req, res, next) => {
     } 
     // registered user
     else if (user) {
-      return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email})//{success: "Authorization successfully passed"});    
+      return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter})//{success: "Authorization successfully passed"});    
     }
     // unknown user or wrong password
     else {

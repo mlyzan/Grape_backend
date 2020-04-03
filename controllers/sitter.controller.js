@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const ObjectId = require('mongoose').Types.ObjectId;
-
+const User = mongoose.model('User');
 const Sitter = mongoose.model('Sitter');
 
-module.exports.createSitter = (req, res, next) => {
-  const sitter = new Sitter();
+module.exports.createSitter = async (req, res, next) => {
+  try {    
+    const sitter = new Sitter();
   sitter.services = req.body.services;
   sitter.animals = req.body.animals;
   sitter.availability = req.body.availability;
@@ -15,18 +16,18 @@ module.exports.createSitter = (req, res, next) => {
   sitter.photo = req.body.photo;
   sitter.userId = req.body.userId;
   sitter.userName = req.body.userName;
-  sitter.userEmail = req.body.userEmail;
   
-
-  sitter.save((err, doc)=>{
-    if(!err) {
-      res.send(doc);
-    } 
-    else {
-      return handleError(err);
-    }
-  });
+  sitter.userEmail = req.body.userEmail;
+  const newSitter = await sitter.save();
+  const user = await User.findById(req.body.userId);
+  user.isSitter = true;
+  await user.save();
+  res.send(newSitter);
+} catch (e) {
+  handleError(e);
 }
+}
+
 
 module.exports.getSitters = (req, res) => {
   Sitter.find((err, docs) => {
