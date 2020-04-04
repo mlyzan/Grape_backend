@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema({
     required: 'Email can\'t be empty',
     unique: true
   },
+  isSitter: {
+    type: Boolean,
+  },
   password: {
     type: String,
     required: 'Password can\'t be empty',

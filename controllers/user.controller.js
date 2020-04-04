@@ -17,7 +17,7 @@ module.exports.register = (req, res, next) => {
 
   user.save((err,doc)=>{
     if(!err) {
-      res.send({userId: doc._id, userName: doc.fullName, userEmail: doc.email});
+      res.status(200).send();
     } else {
       console.log(err);
       if(err.code === 11000) {
@@ -37,7 +37,7 @@ module.exports.authenticate = (req, res, next) => {
     } 
     // registered user
     else if (user) {
-      return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email})//{success: "Authorization successfully passed"});    
+      return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter})//{success: "Authorization successfully passed"});    
     }
     // unknown user or wrong password
     else {
@@ -46,3 +46,17 @@ module.exports.authenticate = (req, res, next) => {
   })(req, res);
 
 } 
+
+module.exports.getUser = async(req, res) => {
+  try {
+    const {id} = req.params;
+    console.log(id, req.params, req.body);
+    const user = await User.findById(id, {password: 0});
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter});
+  } catch (error) {
+    res.status(500).json(err);
+  }
+}
