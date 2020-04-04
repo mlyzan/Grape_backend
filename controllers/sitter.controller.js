@@ -6,26 +6,26 @@ const Sitter = mongoose.model('Sitter');
 module.exports.createSitter = async (req, res, next) => {
   try {    
     const sitter = new Sitter();
-  sitter.services = req.body.services;
-  sitter.animals = req.body.animals;
-  sitter.availability = req.body.availability;
-  sitter.payment = req.body.payment;
-  sitter.address = req.body.address;
-  sitter.years = req.body.years;
-  sitter.information = req.body.information;
-  sitter.photo = req.body.photo;
-  sitter.userId = req.body.userId;
-  sitter.userName = req.body.userName;
-  
-  sitter.userEmail = req.body.userEmail;
-  const newSitter = await sitter.save();
-  const user = await User.findById(req.body.userId);
-  user.isSitter = true;
-  await user.save();
-  res.send(newSitter);
-} catch (e) {
-  handleError(e);
-}
+    sitter.services = req.body.services;
+    sitter.animals = req.body.animals;
+    sitter.availability = req.body.availability;
+    sitter.payment = req.body.payment;
+    sitter.address = req.body.address;
+    sitter.years = req.body.years;
+    sitter.information = req.body.information;
+    sitter.photo = req.body.photo;
+    sitter.userId = req.body.userId;
+    sitter.userName = req.body.userName;
+    
+    sitter.userEmail = req.body.userEmail;
+    const newSitter = await sitter.save();
+    const user = await User.findById(req.body.userId);
+    user.isSitter = true;
+    await user.save();
+    res.send(newSitter);
+  } catch (e) {
+    handleError(e);
+  }
 }
 
 
