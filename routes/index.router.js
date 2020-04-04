@@ -6,6 +6,7 @@ const ctrlSitter = require('../controllers/sitter.controller');
 
 router.post('/register', ctrlUser.register);
 router.post('/authenticate', ctrlUser.authenticate);
+router.get('/user/:id', ctrlUser.getUser);
 router.post('/sitter', ctrlSitter.createSitter);
 router.get('/sitter', ctrlSitter.getSitters);
 router.get('/sitter/:id', ctrlSitter.getSitterById);

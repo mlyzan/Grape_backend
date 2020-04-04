@@ -46,3 +46,17 @@ module.exports.authenticate = (req, res, next) => {
   })(req, res);
 
 } 
+
+module.exports.getUser = async(req, res) => {
+  try {
+    const {id} = req.params;
+    console.log(id, req.params, req.body);
+    const user = await User.findById(id, {password: 0});
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter});
+  } catch (error) {
+    res.status(500).json(err);
+  }
+}
