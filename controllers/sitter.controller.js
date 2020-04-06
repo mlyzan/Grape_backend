@@ -16,6 +16,9 @@ module.exports.createSitter = async (req, res, next) => {
     sitter.photo = req.body.photo;
     sitter.userId = req.body.userId;
     sitter.userName = req.body.userName;
+    sitter.rate = 0;
+    sitter.reviews = 0;
+    sitter.total = 0;
     
     sitter.userEmail = req.body.userEmail;
     const newSitter = await sitter.save();
@@ -71,5 +74,24 @@ module.exports.updateSitterById = (req, res) => {
   Sitter.updateOne({"userId": req.params.id}, {$set: newData}, err => {
     if (!err) { res.send({"success": 'Successfully updated'}); }
     else { console.log('Error in Sitter Update :' + JSON.stringify(err, undefined, 2)); }
+  })
+}
+
+module.exports.updateSitterRateById = async (req, res) => {
+  let obj = {
+    rate: 0,
+    reviews: 0,
+    total: 0
+  };
+  await Sitter.findOne({"userId": req.params.id}, (err, doc) =>{
+    obj.reviews = doc.reviews + 1;
+    obj.total = doc.total + req.body.rate;
+    obj.rate = obj.total / obj.reviews;
+  });
+
+  await Sitter.updateOne({"userId": req.params.id}, {$set: obj}, (err, doc) => {
+    if(!err) {
+      res.send({"rate": obj.rate})
+    } 
   })
 }
