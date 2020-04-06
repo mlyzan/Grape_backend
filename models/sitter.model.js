@@ -41,6 +41,15 @@ const sitterSchema = new mongoose.Schema({
   },
   userEmail: {
     type: String
+  },
+  rate: {
+    type: Number
+  },
+  reviews: {
+    type: Number
+  },
+  total: {
+    type: Number
   }
 });
 
