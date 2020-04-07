@@ -14,6 +14,7 @@ router.get('/sitter', ctrlSitter.getSitters);
 router.get('/sitter/:id', ctrlSitter.getSitterById);
 router.delete('/sitter/:id', ctrlSitter.deleteSitterById);
 router.put('/sitter/:id', ctrlSitter.updateSitterById);
+router.put('/sitter-rate/:id', ctrlSitter.updateSitterRateById);
 
 router.post('/comment', ctrlComment.addComment);
 router.get('/comment', ctrlComment.getComments);
