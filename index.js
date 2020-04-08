@@ -8,7 +8,7 @@ const cors = require('cors');
 const passport = require('passport');
 
 const rtsIndex = require('./routes/index.router');
-
+const PORT = process.env.PORT || 3000
 const app = express();
 
 //middleware
@@ -27,8 +27,9 @@ app.use((err, req, res, next) => {
       res.status(422).send(valErrors)
   }
 });
+app.get('/', (req, res) => res.send('Server works!'))
  
 //start server
-app.listen(process.env.PORT, () => {
-  console.log(`Server started at port : ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server started at port : ${PORT}`);
 });
