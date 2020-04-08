@@ -15,9 +15,9 @@ module.exports.register = (req, res, next) => {
   let salt = bcrypt.genSaltSync(10);
   user.password = bcrypt.hashSync(password,salt);
 
-  user.save((err,doc)=>{
+  user.save((err,user)=>{
     if(!err) {
-      res.status(200).send();
+      return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter});
     } else {
       console.log(err);
       if(err.code === 11000) {
