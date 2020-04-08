@@ -11,3 +11,4 @@ mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopo
 require('./user.model');
 require('./sitter.model');
 require('./comment.model');
+require('./order.model');
