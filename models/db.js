@@ -11,3 +11,4 @@ mongoose.connect('mongodb+srv://User:petlyUser@users-v60cd.mongodb.net/petly?ret
 require('./user.model');
 require('./sitter.model');
 require('./comment.model');
+require('./order.model');
