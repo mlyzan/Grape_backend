@@ -9,7 +9,11 @@ const sitterSchema = new mongoose.Schema({
     type: Array,
     required: 'Animals can\'t be empty'
   },
-  availability: {
+  availabilityFrom: {
+    type: String,
+    required: 'Availability can\'t be empty'
+  },
+  availabilityTo: {
     type: String,
     required: 'Availability can\'t be empty'
   },
