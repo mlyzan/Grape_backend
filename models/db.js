@@ -12,3 +12,4 @@ require('./user.model');
 require('./sitter.model');
 require('./comment.model');
 require('./order.model');
+require('./book.model');

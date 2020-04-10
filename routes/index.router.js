@@ -5,6 +5,7 @@ const ctrlUser = require('../controllers/user.controller');
 const ctrlSitter = require('../controllers/sitter.controller');
 const ctrlComment = require('../controllers/comment.controller');
 const ctrlOrders = require('../controllers/order.controller');
+const ctrlBook = require('../controllers/book.controller');
 
 router.post('/register', ctrlUser.register);
 router.post('/authenticate', ctrlUser.authenticate);
@@ -22,5 +23,10 @@ router.get('/comment', ctrlComment.getComments);
 
 router.post('/order', ctrlOrders.createOrder);
 router.get('/order', ctrlOrders.getOrders);
+
+router.post('/book', ctrlBook.addBook);
+router.get('/book', ctrlBook.getBooks);
+router.put('/book/:id', ctrlBook.updateBookStatus);
+router.delete('/book/:id', ctrlBook.declineBookById);
 
 module.exports = router; 
