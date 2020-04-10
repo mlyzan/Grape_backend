@@ -8,7 +8,8 @@ module.exports.createSitter = async (req, res, next) => {
     const sitter = new Sitter();
     sitter.services = req.body.services;
     sitter.animals = req.body.animals;
-    sitter.availability = req.body.availability;
+    sitter.availabilityFrom = req.body.availabilityFrom;
+    sitter.availabilityTo = req.body.availabilityTo;
     sitter.payment = req.body.payment;
     sitter.address = req.body.address;
     sitter.years = req.body.years;
@@ -64,7 +65,8 @@ module.exports.updateSitterById = (req, res) => {
   let newData = {
     services:  req.body.services,
     animals: req.body.animals,
-    availability: req.body.availability,
+    availabilityFrom: req.body.availabilityFrom,
+    availabilityTo: req.body.availabilityTo,
     payment: req.body.payment,
     address: req.body.address,
     years: req.body.years,
