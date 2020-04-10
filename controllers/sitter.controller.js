@@ -53,10 +53,17 @@ module.exports.getSitterById = (id, res) => {
   })
 }
 
-module.exports.deleteSitterById = (req, res) => {
-  Sitter.deleteOne({"userId": req.params.id}, (err) => {
+module.exports.deleteSitterById = async (req, res) => {
+  await Sitter.deleteOne({"userId": req.params.id}, (err) => {
     if (!err) { res.send({"success": 'Successfuly deleted'}); }
     else { console.log('Error in Employee Delete :' + JSON.stringify(err, undefined, 2)); }
+  });
+  await User.updateOne({"_id": req.params.id},{$unset: {isSitter: ""}}, err => {
+    if(!err) {
+      console.log(`User ${req.params.id} no more sitter`);
+    } else {
+      console.log('Error :' + JSON.stringify(err, undefined, 2));
+    }
   })  
  
 }
