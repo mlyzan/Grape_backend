@@ -16,6 +16,9 @@ const orderSchema = new mongoose.Schema({
   city: {
     type: String,
   },
+  userId: {
+    type: String,
+  },
 });
 
 mongoose.model('Order', orderSchema);
