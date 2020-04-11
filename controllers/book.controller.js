@@ -10,6 +10,8 @@ module.exports.addBook = (req, res, next) => {
   book.name = req.body.name;
   book.isBooked = req.body.isBooked;
   book.isComplete = req.body.isComplete;
+  book.whoBookedId = req.body.whoBookedId;
+  book.sitterName = req.body.sitterName;
 
   book.save((err, doc)=>{
     if(!err) {

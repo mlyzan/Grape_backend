@@ -15,6 +15,12 @@ const bookSchema = new mongoose.Schema({
   },
   isComplete: {
     type: Boolean
+  },
+  whoBookedId: {
+    type: String
+  },
+  sitterName: {
+    type: String
   }
 });
 
