@@ -9,6 +9,12 @@ module.exports.register = (req, res, next) => {
   const user = new User();
   user.fullName = req.body.fullName;
   user.email = req.body.email;
+  user.updateInfo = {
+    animals: null,
+    address: null,
+    years: null,
+    photo: null
+  };
   
   const password = req.body.password;
 
@@ -55,8 +61,26 @@ module.exports.getUser = async(req, res) => {
     if (!user) {
       return res.status(404).send('User not found');
     }
-    return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter});
+    return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter, updateInfo: user.updateInfo});
   } catch (error) {
     res.status(500).json(err);
   }
+}
+
+module.exports.updateProfile = async (req, res) => {
+  let obj = {
+    updateInfo: {
+      animals: req.body.animals,
+      address: req.body.address,
+      years: req.body.years,
+      photo: req.body.photo
+    }
+  }
+  await User.updateOne({"_id": req.params.id}, {$set: obj}, (err, doc) => {
+    if(!err) {
+      res.send({"updateInfo": obj.updateInfo})
+    } else {
+      res.send({"error": err})
+    }
+  })
 }
