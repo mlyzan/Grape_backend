@@ -29,4 +29,6 @@ router.get('/book', ctrlBook.getBooks);
 router.put('/book/:id', ctrlBook.updateBookStatus);
 router.delete('/book/:id', ctrlBook.declineBookById);
 
+router.post('/profile-update/:id', ctrlUser.updateProfile);
+
 module.exports = router; 

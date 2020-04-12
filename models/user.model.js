@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const userSchema = new mongoose.Schema({
   fullName: {
     type: String,
@@ -18,6 +17,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: 'Password can\'t be empty',
     minlength: [4, 'Password must be at least 4 characters long']
+  },
+  updateInfo: {
+    type: Object
   }
 });
 
