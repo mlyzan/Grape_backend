@@ -43,7 +43,7 @@ module.exports.authenticate = (req, res, next) => {
     } 
     // registered user
     else if (user) {
-      return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter})//{success: "Authorization successfully passed"});    
+      return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter, updateInfo: user.updateInfo})//{success: "Authorization successfully passed"});    
     }
     // unknown user or wrong password
     else {
