@@ -19,6 +19,9 @@ const orderSchema = new mongoose.Schema({
   userId: {
     type: String,
   },
+  offers: {
+    type: Array,
+  },
 });
 
 mongoose.model('Order', orderSchema);

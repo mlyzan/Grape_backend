@@ -34,3 +34,21 @@ module.exports.getOrders = (req, res) => {
     }
   });
 };
+
+module.exports.addOffer = (req, res) => {
+  let newData = req.body.sitter;
+
+  Order.updateOne(
+    { _id: req.params.id },
+    { $push: { offers: newData } },
+    (err) => {
+      if (!err) {
+        res.send({ success: 'Successfully updated' });
+      } else {
+        console.log(
+          'Error in Sitter Update :' + JSON.stringify(err, undefined, 2)
+        );
+      }
+    }
+  );
+};
