@@ -23,7 +23,7 @@ module.exports.register = (req, res, next) => {
 
   user.save((err,user)=>{
     if(!err) {
-      return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter});
+      return res.status(200).send({userId: user._id, userName: user.fullName, userEmail: user.email, isSitter: user.isSitter, updateInfo: user.updateInfo});
     } else {
       console.log(err);
       if(err.code === 11000) {
