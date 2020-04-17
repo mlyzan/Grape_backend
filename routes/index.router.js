@@ -24,6 +24,8 @@ router.get('/comment', ctrlComment.getComments);
 router.post('/order', ctrlOrders.createOrder);
 router.get('/order', ctrlOrders.getOrders);
 router.put('/order/:id', ctrlOrders.addOffer);
+router.delete('/order/:id', ctrlOrders.deleteOrderById);
+router.put('/order/offer/:id', ctrlOrders.deleteElementFromOffers);
 
 router.post('/book', ctrlBook.addBook);
 router.get('/book', ctrlBook.getBooks);
