@@ -46,9 +46,45 @@ module.exports.addOffer = (req, res) => {
         res.send({ success: 'Successfully updated' });
       } else {
         console.log(
-          'Error in Sitter Update :' + JSON.stringify(err, undefined, 2)
+          'Error in Offer Update :' + JSON.stringify(err, undefined, 2)
         );
       }
     }
   );
+};
+
+module.exports.deleteOrderById = (req, res) => {
+  Order.deleteOne({"_id": req.params.id}, (err) => {
+    if (!err) { res.send({"success": 'Successfuly delete an order'}); }
+    else { console.log('Error in Book Decline :' + JSON.stringify(err, undefined, 2)); }
+  })  
+};
+
+module.exports.deleteElementFromOffers = async (req, res) => {
+
+  try {
+    await Order.bulkWrite(
+      [
+        { 
+          "updateOne": {
+            "filter": { "_id": req.params.id, offers: req.body.sitterId },
+            "update" : {
+              "$unset": { "offers.$": "" }
+            } 
+          }
+        },
+        { 
+          "updateOne": {
+              "filter": { "_id": req.params.id, offers: null },
+              "update" : {
+                "$pull": { "offers": null }
+              }
+          }
+        }
+      ]
+    );
+    return res.send({success: "Successfully removed"})
+  } catch(e) {
+    console.log(e);
+  }
 };
