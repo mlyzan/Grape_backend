@@ -10,6 +10,8 @@ module.exports.createOrder = async (req, res) => {
     order.services = req.body.services;
     order.city = req.body.city;
     order.userId = req.body.userId;
+    order.userName = req.body.userName;
+    order.userPhoto = req.body.userPhoto; 
 
     order.save((err, doc) => {
       if (!err) {
