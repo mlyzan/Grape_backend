@@ -22,6 +22,12 @@ const orderSchema = new mongoose.Schema({
   offers: {
     type: Array,
   },
+  userName: {
+    type: String
+  },
+  userPhoto: { 
+    type: String
+  }
 });
 
 mongoose.model('Order', orderSchema);
